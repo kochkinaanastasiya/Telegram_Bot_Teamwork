@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 import pro.sky.telegrambotteamwork.model.Cat;
-import pro.sky.telegrambotteamwork.model.Dog;
+
 
 import java.net.URI;
+import java.util.ArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -31,14 +32,14 @@ public class CatControllerTests {
 
     @Test
     public void addCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
     }
 
     @Test
     public void updateCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
 
@@ -60,7 +61,7 @@ public class CatControllerTests {
 
     @Test
     public void findCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
         Cat findCat = response.getBody();
@@ -70,8 +71,8 @@ public class CatControllerTests {
     }
 
     @Test
-    public void deleteCatTest(@PathVariable Long id) {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
+    public void deleteCatTest() {
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
 

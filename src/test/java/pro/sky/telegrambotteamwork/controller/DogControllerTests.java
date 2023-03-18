@@ -71,7 +71,7 @@ public class DogControllerTests {
     }
 
     @Test
-    public void deleteDogTest(@PathVariable Long id) {
+    public void deleteDogTest() {
         Dog dog = new Dog(1L, "Алекс", "Немецкая овчарка", 2, "Описание");
         ResponseEntity<Dog> response = formingUrl(constructionUriBuilderCreation().build().toUri(), dog);
         checkingTheDogsForCreation(dog, response);

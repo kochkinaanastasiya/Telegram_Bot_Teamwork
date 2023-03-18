@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,6 +21,7 @@ import pro.sky.telegrambotteamwork.model.Cat;
 import pro.sky.telegrambotteamwork.model.User;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -50,8 +52,9 @@ public class UserControllerTests {
     }
 
     @Test
-    public void deleteUserTest(@PathVariable Long id) {
-        User user = new User(1L, "Иван", "Иванов", "@ivanIvanov", "+79010000000", 123456789L, 987654321L);
+    public void deleteUserTest() {
+        User user = new User(1L, "Иван", "Иванов", "@ivanIvanov", 123456789L, 987654321L);
+        user.setReportDataset(new ArrayList<>());
         ResponseEntity<User> response = formingUrl(constructionUriBuilderCreation().build().toUri(), user);
         checkingTheUsersForCreation(user, response);
 

@@ -28,14 +28,14 @@ public class PetControllerTests {
 
     @Test
     public void addPetTest() {
-        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание");
+        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание", null);
         ResponseEntity<Pet> response = formingUrl(constructionUriBuilderCreation().build().toUri(), pet);
         checkingThePetsForCreation(pet, response);
     }
 
     @Test
     public void updatePetTest() {
-        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание");
+        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание", null);
         ResponseEntity<Pet> response = formingUrl(constructionUriBuilderCreation().build().toUri(), pet);
         checkingThePetsForCreation(pet, response);
 
@@ -57,7 +57,7 @@ public class PetControllerTests {
 
     @Test
     public void findPetTest() {
-        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание");
+        Pet pet = new Pet(1L, "Бони", "Волнистый попугай", 2, "Описание", null);
         ResponseEntity<Pet> response = formingUrl(constructionUriBuilderCreation().build().toUri(), pet);
         checkingThePetsForCreation(pet, response);
         Pet findPet = response.getBody();
