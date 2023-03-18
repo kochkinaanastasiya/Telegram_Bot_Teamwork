@@ -6,6 +6,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pro.sky.telegrambotteamwork.enums.Role;
 import pro.sky.telegrambotteamwork.model.User;
@@ -123,4 +124,14 @@ public class UserService {
         return user;
     }
 
+
+    /**
+     * Метод удаления пользователя из базы данных
+     *
+     * @param id идентификатор пользователя
+     */
+    public void deleteUser(Long id) {
+        logger.info("Вызван метод удаления пользователя по id: {}", id);
+        userRepository.deleteById(id);
+    }
 }

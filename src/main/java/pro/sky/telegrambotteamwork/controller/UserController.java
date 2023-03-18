@@ -1,11 +1,10 @@
 package pro.sky.telegrambotteamwork.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.telegrambotteamwork.model.User;
 import pro.sky.telegrambotteamwork.service.UserService;
-import org.springframework.http.HttpStatus;
-
 
 @RestController
 @RequestMapping("/api/user")
@@ -28,8 +27,9 @@ public class UserController {
         return userService.findUser(id);
     }
 
-    @DeleteMapping
-    public HttpStatus deleteUser(@RequestBody User user) {
-        return userService.deleteUser(user);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUser(@RequestBody Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok().build();
     }
 }

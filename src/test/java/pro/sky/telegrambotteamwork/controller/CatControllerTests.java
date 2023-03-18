@@ -11,8 +11,11 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 import pro.sky.telegrambotteamwork.model.Cat;
+import pro.sky.telegrambotteamwork.model.Dog;
 
 import java.net.URI;
 
@@ -64,6 +67,20 @@ public class CatControllerTests {
         ResponseEntity<Cat> findResponse = restTemplate.getForEntity("http://localhost:" + port + "/api/cat/" + findCat.getId(), Cat.class);
         Assertions.assertThat(findResponse.getBody()).isEqualTo(findCat);
         Assertions.assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void deleteCatTest(@PathVariable Long id) {
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
+        ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
+        checkingTheCatsForCreation(cat, response);
+
+        Cat deleteCat = response.getBody();
+        ResponseEntity<Cat> deleteResponse = restTemplate.getForEntity("http://localhost:" + port + "/api/cat/" + deleteCat.getId(), Cat.class);
+
+        Assertions.assertThat(deleteResponse.getBody()).isNotNull();
+        Assertions.assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(deleteResponse.getBody()).isEqualTo(deleteCat);
     }
 
     private ResponseEntity<Cat> formingUrl(URI uri, Cat cat) {

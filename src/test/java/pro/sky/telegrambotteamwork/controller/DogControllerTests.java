@@ -8,11 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 import pro.sky.telegrambotteamwork.model.Dog;
+import pro.sky.telegrambotteamwork.model.User;
 
 import java.net.URI;
 
@@ -65,6 +68,19 @@ public class DogControllerTests {
         ResponseEntity<Dog> findResponse = restTemplate.getForEntity("http://localhost:" + port + "/api/dog/" + findDog.getId(), Dog.class);
         Assertions.assertThat(findResponse.getBody()).isEqualTo(findDog);
         Assertions.assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void deleteDogTest(@PathVariable Long id) {
+        Dog dog = new Dog(1L, "Алекс", "Немецкая овчарка", 2, "Описание");
+        ResponseEntity<Dog> response = formingUrl(constructionUriBuilderCreation().build().toUri(), dog);
+        checkingTheDogsForCreation(dog, response);
+        Dog deleteDog = response.getBody();
+        ResponseEntity<Dog> deleteResponse = restTemplate.getForEntity("http://localhost:" + port + "/api/dog/" + deleteDog.getId(), Dog.class);
+
+        Assertions.assertThat(deleteResponse.getBody()).isNotNull();
+        Assertions.assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(deleteResponse.getBody()).isEqualTo(deleteDog);
     }
 
     private ResponseEntity<Dog> formingUrl(URI uri, Dog dog) {

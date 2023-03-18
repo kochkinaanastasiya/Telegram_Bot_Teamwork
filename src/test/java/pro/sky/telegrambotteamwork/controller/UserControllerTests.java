@@ -11,7 +11,12 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
+import pro.sky.telegrambotteamwork.model.Cat;
 import pro.sky.telegrambotteamwork.model.User;
 
 import java.net.URI;
@@ -44,6 +49,20 @@ public class UserControllerTests {
         Assertions.assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
+    @Test
+    public void deleteUserTest(@PathVariable Long id) {
+        User user = new User(1L, "Иван", "Иванов", "@ivanIvanov", "+79010000000", 123456789L, 987654321L);
+        ResponseEntity<User> response = formingUrl(constructionUriBuilderCreation().build().toUri(), user);
+        checkingTheUsersForCreation(user, response);
+
+        User deleteUser = response.getBody();
+        ResponseEntity<User> deleteResponse = restTemplate.getForEntity("http://localhost:" + port + "/api/user/" + deleteUser.getId(), User.class);
+
+        Assertions.assertThat(deleteResponse.getBody()).isNotNull();
+        Assertions.assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(deleteResponse.getBody()).isEqualTo(deleteUser);
+    }
+
     private ResponseEntity<User> formingUrl(URI uri, User user) {
         return restTemplate.postForEntity(uri, user, User.class);
     }
@@ -62,4 +81,6 @@ public class UserControllerTests {
         Assertions.assertThat(response.getBody().getId()).isNotNull();
         Assertions.assertThat(response.getBody().getId()).isEqualTo(user.getId());
     }
+
+
 }
