@@ -1,7 +1,9 @@
 package pro.sky.telegrambotteamwork.controller;
 
 import com.pengrad.telegrambot.TelegramBot;
+import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,14 +13,9 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 import pro.sky.telegrambotteamwork.model.Cat;
-
-
 import java.net.URI;
-import java.util.ArrayList;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -32,14 +29,14 @@ public class CatControllerTests {
 
     @Test
     public void addCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
     }
 
     @Test
     public void updateCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
+        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание");
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
 
@@ -61,7 +58,7 @@ public class CatControllerTests {
 
     @Test
     public void findCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
+        Cat cat = new Cat(1L, "Арчи", "Шотландский", 2, "Описание");
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
         Cat findCat = response.getBody();
@@ -72,7 +69,7 @@ public class CatControllerTests {
 
     @Test
     public void deleteCatTest() {
-        Cat cat = new Cat(1L, "Алекс", "Британский", 2, "Описание", null);
+        Cat cat = new Cat(1L, "Арчи", "Шотландский", 2, "Описание");
         ResponseEntity<Cat> response = formingUrl(constructionUriBuilderCreation().build().toUri(), cat);
         checkingTheCatsForCreation(cat, response);
 

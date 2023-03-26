@@ -25,7 +25,7 @@ public class DogController {
      * @param dog сущность собаки
      * @return Возвращает сохраненную в базу данных собаку
      */
-    @Operation(summary = "Метод добавления собаки в базу данных", description = "Позваляет добавлять собаку в базу данных")
+    @Operation(summary = "Метод добавления собаки в базу данных", description = "Позволяет добавлять собаку в базу данных")
     @PostMapping
     public Dog addDog(@RequestBody Dog dog) {
         return dogService.addDog(dog);
@@ -37,7 +37,7 @@ public class DogController {
      * @param dog сущность собаки
      * @return Возвращает отредактированную в базе данных собаку
      */
-    @Operation(summary = "Метод редактирования собаки в базе данных", description = "Позваляет редактировать собаку в базе данных")
+    @Operation(summary = "Метод редактирования собаки в базе данных", description = "Позволяет редактировать собаку в базе данных")
     @PutMapping
     public Dog updateDog(@RequestBody Dog dog) {
         return dogService.updateDog(dog);
@@ -49,7 +49,7 @@ public class DogController {
      * @param id идентификатор искомой собаки
      * @return Возвращает найденную собаку
      */
-    @Operation(summary = "Метод, чтобы найти собаку в базе данных", description = "Позваляет найти собаку в базе данных")
+    @Operation(summary = "Метод, чтобы найти собаку в базе данных", description = "Позволяет найти собаку в базе данных")
     @GetMapping("/{id}")
     public Dog findDog(@Parameter(description = "Идентификатор искомой собаки") @PathVariable Long id) {
         return dogService.findDog(id);
@@ -61,7 +61,7 @@ public class DogController {
      * @param id идентификатор собаки
      * @return Возвращает ответ 200, если удаление собаки успешно произошло
      */
-    @Operation(summary = "Метод, чтобы удалить собаку из базы данных", description = "Позваляет удалить собаку из базы данных")
+    @Operation(summary = "Метод, чтобы удалить собаку из базы данных", description = "Позволяет удалить собаку из базы данных")
     @DeleteMapping("/{id}")
     public ResponseEntity<Dog> deleteDog(@Parameter(description = "Идентификатор удаляемой собаки") @PathVariable Long id) {
         dogService.deleteDog(id);

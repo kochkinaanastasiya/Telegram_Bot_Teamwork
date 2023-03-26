@@ -16,8 +16,7 @@ import pro.sky.telegrambotteamwork.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-import static pro.sky.telegrambotteamwork.constants.TextMessageUserConstant.ARE_YOU_VOLUNTEER;
-import static pro.sky.telegrambotteamwork.constants.TextMessageUserConstant.YOU_HAVE_SUBSCRIBED;
+import static pro.sky.telegrambotteamwork.constants.TextMessageUserConstant.*;
 
 /**
  * Серивис-класс для всех пользователей ботом

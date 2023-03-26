@@ -9,7 +9,7 @@ import pro.sky.telegrambotteamwork.repository.UiRepository;
 @Service
 public class UiService {
 
-    private final Logger logger = LoggerFactory.getLogger(PetService.class);
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UiRepository uiRepository;
 
     public UiService(UiRepository uiRepository) {

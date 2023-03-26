@@ -43,6 +43,7 @@ public class UserControllerTests {
     @Test
     public void findUserTest() {
         User user = new User(1L, "Иван", "Иванов", "@ivanIvanov", 123456789L, 987654321L);
+        user.setReportDataset(new ArrayList<>());
         ResponseEntity<User> response = formingUrl(constructionUriBuilderCreation().build().toUri(), user);
         checkingTheUsersForCreation(user, response);
         User findUser = response.getBody();

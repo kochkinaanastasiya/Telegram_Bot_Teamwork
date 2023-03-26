@@ -25,7 +25,7 @@ public class CatController {
      * @param cat сущность кошки
      * @return Возвращает сохраненную в базу данных кошку
      */
-    @Operation(summary = "Метод добавления кошки в базу данных", description = "Позваляет добавлять кошку в базу данных")
+    @Operation(summary = "Метод добавления кошки в базу данных", description = "Позволяет добавлять кошку в базу данных")
     @PostMapping
     public Cat addCat(@RequestBody Cat cat) {
         return catService.addCat(cat);
@@ -37,7 +37,7 @@ public class CatController {
      * @param cat сущность кошки
      * @return Возвращает отредактированную в базе данных кошку
      */
-    @Operation(summary = "Метод редактирования кошки в базе данных", description = "Позваляет редактировать кошку в базе данных")
+    @Operation(summary = "Метод редактирования кошки в базе данных", description = "Позволяет редактировать кошку в базе данных")
     @PutMapping
     public Cat updateCat(@RequestBody Cat cat) {
         return catService.updateCat(cat);
@@ -49,7 +49,7 @@ public class CatController {
      * @param id идентификатор искомой кошки
      * @return Возвращает найденную кошку
      */
-    @Operation(summary = "Метод, чтобы найти кошку в базе данных", description = "Позваляет найти кошку в базе данных")
+    @Operation(summary = "Метод, чтобы найти кошку в базе данных", description = "Позволяет найти кошку в базе данных")
     @GetMapping("/{id}")
     public Cat findCat(@Parameter(description = "Идентификатор искомой кошки") @PathVariable Long id) {
         return catService.findCat(id);
@@ -61,7 +61,7 @@ public class CatController {
      * @param id идентификатор кошки
      * @return Возвращает ответ 200, если удаление кошки успешно произошло
      */
-    @Operation(summary = "Метод, чтобы удалить кошку из базы данных", description = "Позваляет удалить кошку из базы данных")
+    @Operation(summary = "Метод, чтобы удалить кошку из базы данных", description = "Позволяет удалить кошку из базы данных")
     @DeleteMapping("/{id}")
     public ResponseEntity<Cat> deleteCat(@Parameter(description = "Идентификатор удаляемой кошки") @PathVariable Long id) {
         catService.deleteCat(id);

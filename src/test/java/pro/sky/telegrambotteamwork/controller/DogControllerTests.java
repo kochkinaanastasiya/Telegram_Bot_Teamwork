@@ -8,14 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.util.UriComponentsBuilder;
 import pro.sky.telegrambotteamwork.model.Dog;
-import pro.sky.telegrambotteamwork.model.User;
 
 import java.net.URI;
 
@@ -72,7 +69,7 @@ public class DogControllerTests {
 
     @Test
     public void deleteDogTest() {
-        Dog dog = new Dog(1L, "Алекс", "Немецкая овчарка", 2, "Описание");
+        Dog dog = new Dog(1L, "Арчи", "Кавказская овчарка", 2, "Описание");
         ResponseEntity<Dog> response = formingUrl(constructionUriBuilderCreation().build().toUri(), dog);
         checkingTheDogsForCreation(dog, response);
         Dog deleteDog = response.getBody();

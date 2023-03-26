@@ -55,6 +55,13 @@ public class UserController {
         return userService.findUser(id);
     }
 
+    /**
+     * Метод удаления пользователя из базы данных
+     *
+     * @param id идентификатор пользователя
+     * @return Возвращает ответ 200, если удаление пользователя произошло успешно
+     */
+    @Operation(summary = "Метод, чтобы удалить пользователя из базы данных", description = "Позваляет удалить пользователя из базы данных")
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@RequestBody Long id) {
         userService.deleteUser(id);
