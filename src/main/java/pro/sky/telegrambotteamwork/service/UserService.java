@@ -132,4 +132,11 @@ public class UserService {
         logger.info("Вызван метод удаления пользователя по id: {}", id);
         userRepository.deleteById(id);
     }
+    public void findUserByRoleVolunteer(Update update, Long chatId, String message) {
+        Collection<User> users = userRepository.findUserByRole(Role.ROLE_VOLUNTEER);
+        for (User user : users) {
+            telegramBot.execute(new SendMessage(chatId, RESPONSE_TO_VOLUNTEER_FROM_USER_MESSAGE + update.message().from().username() + RESPONSE_TO_VOLUNTEER_FROM_USER_MESSAGE_2 + message));
+        }
+    }
+
 }
